@@ -1,0 +1,461 @@
+2020-10-21 10:40:34,183 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:40:34,183 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:40:34,183 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:40:34,183 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:40:34,183 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:40:34,184 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:40:34,184 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:40:34,184 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2020-10-21 10:40:34,187 - engine_logger:INFO - Loaded yaml configs: {'default': {'game': {'grid_size': 90, 'interval': 45, 'start_pattern': 'random'}, 'main_program': {'delay_start': False, 'display': True}}, 'foo_mode': {'game': {'start_pattern': 'gosper'}, 'main_program': {'display': False}}, 'bar_mode': {'game': {'start_pattern': 'glider'}, 'main_program': {'display': False}}}
+2020-10-21 10:40:34,187 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): delay_start, False
+2020-10-21 10:40:34,187 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): display, True
+2020-10-21 10:40:34,187 - engine_logger:INFO - Done init in MainProgram.
+2020-10-21 10:41:35,915 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:41:35,915 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:41:35,915 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:41:35,916 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:41:35,916 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:41:35,916 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:41:35,916 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:41:35,917 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2020-10-21 10:41:35,918 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2020-10-21 10:41:35,918 - engine_logger:INFO - Done init in MainProgram.
+2020-10-21 10:42:14,403 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:42:14,404 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:42:14,404 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:42:14,404 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:42:14,404 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:42:14,404 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:42:14,404 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:42:14,405 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2020-10-21 10:42:14,407 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42, 'undeclared_attribute': 'ignored'}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2020-10-21 10:42:14,407 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): undeclared_attribute, ignored
+2020-10-21 10:42:14,407 - engine_logger:INFO - Done init in MainProgram.
+2020-10-21 10:42:58,212 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:42:58,212 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:42:58,212 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:42:58,212 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:42:58,212 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:42:58,212 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:42:58,212 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:42:58,213 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='bar')
+2020-10-21 10:42:58,215 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42, 'undeclared_attribute': 'ignored'}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2020-10-21 10:42:58,215 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): undeclared_attribute, ignored
+2020-10-21 10:43:20,280 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:43:20,280 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:43:20,281 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:43:20,281 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:43:20,281 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:43:20,281 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:43:20,281 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:43:20,282 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='bar_mode')
+2020-10-21 10:43:20,283 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42, 'undeclared_attribute': 'ignored'}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2020-10-21 10:43:20,284 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): undeclared_attribute, ignored
+2020-10-21 10:43:20,284 - engine_logger:INFO - Done init in MainProgram.
+2020-10-21 10:44:41,734 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:44:41,734 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:44:41,734 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:44:41,735 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:44:41,735 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:44:41,735 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:44:41,735 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:44:41,736 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='bar_mode')
+2020-10-21 10:44:41,737 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42, 'undeclared_attribute': 'ignored'}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2020-10-21 10:44:41,737 - engine_logger:INFO - Attribute foo has been set to 42
+2020-10-21 10:44:41,738 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): undeclared_attribute, ignored
+2020-10-21 10:44:41,738 - engine_logger:INFO - Attribute foo has been set to bar
+2020-10-21 10:44:41,738 - engine_logger:INFO - Done init in MainProgram.
+2020-10-21 10:47:10,890 - engine_logger:INFO - Initated logger in MainProgram 
+2020-10-21 10:47:10,890 - engine_logger:DEBUG - logger debug level msg 
+2020-10-21 10:47:10,890 - engine_logger:INFO - logger info level msg 
+2020-10-21 10:47:10,891 - engine_logger:WARNING - logger warn level msg 
+2020-10-21 10:47:10,891 - engine_logger:ERROR - logger error level msg 
+2020-10-21 10:47:10,891 - engine_logger:CRITICAL - logger critical level msg 
+2020-10-21 10:47:10,891 - engine_logger:INFO - Parsing args in ArgParser
+2020-10-21 10:47:10,891 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2020-10-21 10:47:10,892 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='bar_mode')
+2020-10-21 10:47:10,894 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42, 'undeclared_attribute': 'ignored'}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2020-10-21 10:47:10,894 - engine_logger:INFO - Attribute foo has been set to 42
+2020-10-21 10:47:10,894 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): undeclared_attribute, ignored
+2020-10-21 10:47:10,894 - engine_logger:INFO - Attribute foo has been set to bar, overriding default values if any.
+2020-10-21 10:47:10,894 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 20:55:00,598 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 20:55:00,598 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 20:55:00,598 - engine_logger:INFO - logger info level msg 
+2021-11-24 20:55:00,598 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 20:55:00,598 - engine_logger:ERROR - logger error level msg 
+2021-11-24 20:55:00,598 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 20:55:00,598 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 20:55:00,598 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 20:55:00,603 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 20:55:00,605 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'foo': 42, 'undeclared_attribute': 'ignored'}}, 'foo_mode': {'main_program': {'foo': 'foo'}}, 'bar_mode': {'main_program': {'foo': 'bar'}}}
+2021-11-24 20:55:00,605 - engine_logger:INFO - Attribute foo has been set to 42
+2021-11-24 20:55:00,605 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): undeclared_attribute, ignored
+2021-11-24 20:55:00,605 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:06:00,229 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:06:00,229 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:06:00,230 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:06:00,230 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:06:00,230 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:06:00,230 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:06:00,231 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:06:00,231 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:06:00,234 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:06:00,241 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': ['produit.xlsx', 'produit_old.xlsx']}}}
+2021-11-24 21:06:00,242 - engine_logger:INFO - Attribute inputs_folder has been set to /inputs/
+2021-11-24 21:06:00,242 - engine_logger:INFO - Attribute outputs_folder has been set to /outputs/
+2021-11-24 21:06:00,242 - engine_logger:INFO - Attribute files_to_read has been set to ['produit.xlsx', 'produit_old.xlsx']
+2021-11-24 21:07:22,459 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:07:22,460 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:07:22,460 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:07:22,460 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:07:22,460 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:07:22,460 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:07:22,460 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:07:22,460 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:07:22,466 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:07:22,467 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': ['produit.xlsx', 'produit_old.xlsx']}}}
+2021-11-24 21:07:22,467 - engine_logger:INFO - Attribute inputs_folder has been set to /inputs/
+2021-11-24 21:07:22,467 - engine_logger:INFO - Attribute outputs_folder has been set to /outputs/
+2021-11-24 21:07:22,467 - engine_logger:INFO - Attribute files_to_read has been set to ['produit.xlsx', 'produit_old.xlsx']
+2021-11-24 21:07:22,467 - engine_logger:INFO - Current mode default.
+2021-11-24 21:07:22,468 - engine_logger:INFO - Configs for current mode {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': ['produit.xlsx', 'produit_old.xlsx']}}.
+2021-11-24 21:07:22,468 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:10:09,924 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:10:09,925 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:10:09,925 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:10:09,925 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:10:09,925 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:10:09,925 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:10:09,925 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:10:09,925 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:10:09,931 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:10:09,932 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:10:09,932 - engine_logger:INFO - Attribute inputs_folder has been set to /inputs/
+2021-11-24 21:10:09,932 - engine_logger:INFO - Attribute outputs_folder has been set to /outputs/
+2021-11-24 21:10:09,932 - engine_logger:INFO - Attribute files_to_read has been set to [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]
+2021-11-24 21:10:09,932 - engine_logger:INFO - Current mode default.
+2021-11-24 21:10:09,933 - engine_logger:INFO - Configs for current mode {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}.
+2021-11-24 21:10:09,933 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:17:09,065 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:17:09,065 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:17:09,066 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:17:09,066 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:17:09,066 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:17:09,066 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:17:09,066 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:17:09,067 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:17:09,070 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:17:09,078 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:17:33,555 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:17:33,555 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:17:33,556 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:17:33,556 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:17:33,556 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:17:33,556 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:17:33,556 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:17:33,557 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:17:33,560 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:17:33,569 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:17:33,569 - engine_logger:INFO - Attribute inputs_folder has been set to /inputs/
+2021-11-24 21:17:33,569 - engine_logger:INFO - Attribute outputs_folder has been set to /outputs/
+2021-11-24 21:17:33,569 - engine_logger:INFO - Attribute files_to_read has been set to [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]
+2021-11-24 21:19:26,750 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:19:26,751 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:19:26,751 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:19:26,751 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:19:26,752 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:19:26,752 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:19:26,753 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:19:26,753 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:19:26,757 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:19:26,767 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:19:26,767 - engine_logger:INFO - Attribute inputs_folder has been set to /inputs/
+2021-11-24 21:19:26,767 - engine_logger:INFO - Attribute outputs_folder has been set to /outputs/
+2021-11-24 21:19:26,767 - engine_logger:INFO - Attribute files_to_read has been set to [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]
+2021-11-24 21:19:28,773 - engine_logger:INFO - Current mode default.
+2021-11-24 21:20:55,027 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:20:55,027 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:20:55,027 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:20:55,027 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:20:55,027 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:20:55,027 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:20:55,027 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:20:55,027 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:20:55,033 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:20:55,035 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:20:55,035 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:20:55,035 - engine_logger:INFO - Current mode default.
+2021-11-24 21:20:55,035 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7f443f64ffa0>.
+2021-11-24 21:20:55,035 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:21:00,366 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:21:00,366 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:21:00,366 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:21:00,367 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:21:00,367 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:21:00,367 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:21:00,367 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:21:00,368 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:21:00,371 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:21:00,380 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:21:00,380 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:25:20,735 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:25:20,735 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:25:20,735 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:25:20,735 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:25:20,735 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:25:20,735 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:25:20,736 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:25:20,736 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:25:20,741 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:25:20,743 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:25:20,743 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:25:20,743 - engine_logger:INFO - Current mode default.
+2021-11-24 21:25:20,743 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7f30850966d0>.
+2021-11-24 21:25:20,743 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:25:38,946 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:25:38,947 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:25:38,947 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:25:38,948 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:25:38,948 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:25:38,949 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:25:38,949 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:25:38,949 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:25:38,952 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:25:38,962 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:25:38,962 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:25:38,962 - engine_logger:INFO - Current mode default.
+2021-11-24 21:25:38,962 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7fbed090b070>.
+2021-11-24 21:25:38,963 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:26:01,088 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:26:01,088 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:26:01,088 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:26:01,088 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:26:01,088 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:26:01,088 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:26:01,089 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:26:01,089 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:26:01,094 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:26:01,096 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:26:01,096 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:26:01,096 - engine_logger:INFO - Current mode default.
+2021-11-24 21:26:01,096 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7fa663101550>.
+2021-11-24 21:26:01,096 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:26:40,120 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:26:40,121 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:26:40,121 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:26:40,121 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:26:40,121 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:26:40,121 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:26:40,121 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:26:40,121 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:26:40,126 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:26:40,128 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:26:40,128 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:26:40,128 - engine_logger:INFO - Current mode default.
+2021-11-24 21:26:40,128 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7fa1aaab5700>.
+2021-11-24 21:26:40,128 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:26:48,889 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:26:48,890 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:26:48,890 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:26:48,890 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:26:48,890 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:26:48,890 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:26:48,891 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:26:48,891 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:26:48,894 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:26:48,903 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:26:48,903 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:26:48,903 - engine_logger:INFO - Current mode default.
+2021-11-24 21:26:48,904 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7ff74e599040>.
+2021-11-24 21:26:48,904 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:28:01,747 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:28:01,747 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:28:01,747 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:28:01,747 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:28:01,747 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:28:01,747 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:28:01,747 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:28:01,747 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:28:01,753 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:28:01,754 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:28:01,755 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:28:01,755 - engine_logger:INFO - Current mode default.
+2021-11-24 21:28:01,755 - engine_logger:INFO - Configs for current mode <__main__.Configs object at 0x7f84f726c700>.
+2021-11-24 21:28:01,755 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:28:01,755 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:28:01,755 - engine_logger:INFO - reading old_products - produit_old.xlsx
+2021-11-24 21:37:12,675 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:37:12,675 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:37:12,675 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:37:12,675 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:37:12,675 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:37:12,675 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:37:12,675 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:37:12,675 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:37:12,676 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:37:12,678 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:37:12,678 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:37:12,678 - engine_logger:INFO - Current mode default.
+2021-11-24 21:37:12,678 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7fa6263cef70>.
+2021-11-24 21:37:12,678 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:37:12,678 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:38:02,265 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:38:02,265 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:38:02,265 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:38:02,265 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:38:02,265 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:38:02,265 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:38:02,265 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:38:02,265 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:38:02,266 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:38:02,268 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:38:02,268 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:38:02,268 - engine_logger:INFO - Current mode default.
+2021-11-24 21:38:02,268 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7fa5b8a51f70>.
+2021-11-24 21:38:02,268 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:38:02,268 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:41:48,963 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:41:48,963 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:41:48,963 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:41:48,963 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:41:48,963 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:41:48,963 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:41:48,963 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:41:48,963 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:41:48,964 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:41:48,966 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:41:48,966 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:41:48,966 - engine_logger:INFO - Current mode default.
+2021-11-24 21:41:48,966 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7fe818481bb0>.
+2021-11-24 21:41:48,966 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:41:48,966 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:41:52,607 - engine_logger:INFO - reading old_products - produit_old.xlsx
+2021-11-24 21:46:25,789 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:46:25,789 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:46:25,789 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:46:25,789 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:46:25,789 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:46:25,789 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:46:25,789 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:46:25,789 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:46:25,791 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:46:25,793 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:46:25,793 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:46:25,793 - engine_logger:INFO - Current mode default.
+2021-11-24 21:46:25,793 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7fbc98974b80>.
+2021-11-24 21:46:25,793 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:46:25,794 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:46:29,545 - engine_logger:INFO - reading old_products - produit_old.xlsx
+2021-11-24 21:46:42,996 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:46:42,996 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:46:42,997 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:46:42,997 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:46:42,997 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:46:42,997 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:46:42,997 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:46:42,997 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:46:42,998 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:46:42,999 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:46:42,999 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:46:43,000 - engine_logger:INFO - Current mode default.
+2021-11-24 21:46:43,000 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7f95f0f18f70>.
+2021-11-24 21:46:43,000 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:46:43,000 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:46:46,667 - engine_logger:INFO - reading old_products - produit_old.xlsx
+2021-11-24 21:47:07,789 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:47:07,789 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:47:07,790 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:47:07,790 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:47:07,790 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:47:07,790 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:47:07,790 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:47:07,790 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:47:07,791 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:47:07,793 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:47:07,793 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:47:07,793 - engine_logger:INFO - Current mode default.
+2021-11-24 21:47:07,793 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7ff1e92e7f70>.
+2021-11-24 21:47:07,793 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:47:07,793 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:47:11,575 - engine_logger:INFO - reading old_products - produit_old.xlsx
+2021-11-24 21:47:15,796 - engine_logger:INFO - Columns: Index(['pk_produit', 'no_prod', 'descfr', 'descang', 'actif', 'note',
+       'modifiable', 'dh_produit', 'cost', 'prix1', 'prix2', 'prix3', 'prix4',
+       'dh_creer', 'min', 'max', 'qte', 'fk_grp', 'web', 'qte_libre', 'manque',
+       'inuse', 'par', 'no_invent', 'desuet', 'qte_vendu', 'qte_cmd', 'venmar',
+       'fk_grp2', 'descfr2', 'descang2', 'fk_liste', 'volt', 'lumen', 'watt',
+       'wattdlc', 'couleur', 'last_reception', 'qte_reception', 'driver1',
+       'driver2', 'qte_claim', 'kit', 'pour_desuet', 'atelier', 'nbr_photo',
+       'par_boite', 'par_palette', 'min_order', 'min_sugg', 'longueur1',
+       'largeur1', 'hauteur1', 'poids1', 'longueur2', 'largeur2', 'hauteur2',
+       'poids2', 'note_cmd', 'sample', 'upc', 'interleave', 'prev_pdesuet',
+       'NO_PROD1', 'amazon', 'qte_ama', 'promo1', 'promo2', 'promo3', 'CBI1',
+       'CBI2', 'CBM1', 'cbm2', 'longueurM1', 'longueurm2', 'largeurM1',
+       'largeurM2', 'hauteurM1', 'hauteurM2', 'poidsM1', 'poidsM2', 'hs',
+       'origine', 'dlc', 'fk_dlc', 'sub_new', 'sub_reno'],
+      dtype='object')
+2021-11-24 21:47:15,796 - engine_logger:INFO - Columns: Index(['pk_produit', 'no_prod', 'descfr', 'descang', 'actif', 'note',
+       'modifiable', 'dh_produit', 'cost', 'prix1', 'prix2', 'prix3', 'prix4',
+       'dh_creer', 'min', 'max', 'qte', 'fk_grp', 'web', 'qte_libre', 'manque',
+       'inuse', 'par', 'no_invent', 'desuet', 'qte_vendu', 'qte_cmd', 'venmar',
+       'fk_grp2', 'descfr2', 'descang2', 'fk_liste', 'volt', 'lumen', 'watt',
+       'wattdlc', 'couleur', 'last_reception', 'qte_reception', 'driver1',
+       'driver2', 'qte_claim', 'kit', 'pour_desuet', 'atelier', 'nbr_photo',
+       'par_boite', 'par_palette', 'min_order', 'min_sugg', 'longueur1',
+       'largeur1', 'hauteur1', 'poids1', 'longueur2', 'largeur2', 'hauteur2',
+       'poids2', 'note_cmd', 'sample', 'upc', 'interleave', 'prev_pdesuet',
+       'NO_PROD1', 'amazon', 'qte_ama', 'promo1', 'promo2', 'promo3', 'CBI1',
+       'CBI2', 'CBM1', 'cbm2', 'longueurM1', 'longueurm2', 'largeurM1',
+       'largeurM2', 'hauteurM1', 'hauteurM2', 'poidsM1', 'poidsM2', 'hs',
+       'origine', 'dlc'],
+      dtype='object')
+2021-11-24 21:49:56,774 - engine_logger:INFO - Initated logger in MainProgram 
+2021-11-24 21:49:56,774 - engine_logger:DEBUG - logger debug level msg 
+2021-11-24 21:49:56,774 - engine_logger:INFO - logger info level msg 
+2021-11-24 21:49:56,774 - engine_logger:WARNING - logger warn level msg 
+2021-11-24 21:49:56,774 - engine_logger:ERROR - logger error level msg 
+2021-11-24 21:49:56,774 - engine_logger:CRITICAL - logger critical level msg 
+2021-11-24 21:49:56,774 - engine_logger:INFO - Parsing args in ArgParser
+2021-11-24 21:49:56,774 - engine_logger:INFO - ArgParser - parsing commandline args... 
+2021-11-24 21:49:56,775 - engine_logger:INFO - Args from cmdline: Namespace(configs_file='configs.yaml', mode='default')
+2021-11-24 21:49:56,777 - engine_logger:INFO - Loaded yaml configs: {'default': {'main_program': {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}}}
+2021-11-24 21:49:56,777 - engine_logger:WARNING - Config file contains an attribute that is not in this class's attribute and therefore has not been set (k,v): main_program, {'inputs_folder': '/inputs/', 'outputs_folder': '/outputs/', 'files_to_read': [{'products': 'produit.xlsx'}, {'old_products': 'produit_old.xlsx'}]}
+2021-11-24 21:49:56,777 - engine_logger:INFO - Current mode default.
+2021-11-24 21:49:56,777 - engine_logger:INFO - Configs for current mode <utils.utils.Configs object at 0x7fce9d351f70>.
+2021-11-24 21:49:56,777 - engine_logger:INFO - Done init in MainProgram.
+2021-11-24 21:49:56,777 - engine_logger:INFO - reading products - produit.xlsx
+2021-11-24 21:50:00,442 - engine_logger:INFO - reading old_products - produit_old.xlsx
+2021-11-24 21:50:04,578 - engine_logger:INFO - Should have a bunch of newlines:5008 - COST = PO8645 =6,34 *1,3699
+boite standard 60pcs
+Le prix de $8.80 est effectif à partir du 1er mai ou des 900pcs du PO #8645 
+
+
+
+
+
+
+
+
+
+COST= PO8135  *1.4817
+2021-11-24 21:50:04,578 - engine_logger:INFO - Removing trailing whitespaces ...
+2021-11-24 21:50:04,656 - engine_logger:INFO - Removing leading whitespaces ...
+2021-11-24 21:50:04,722 - engine_logger:INFO - Removing repeated whitespaces ...
+2021-11-24 21:50:04,999 - engine_logger:INFO - Newlines should be gone:5008 - COST = PO8645 =6,34 *1,3699 boite standard 60pcs Le prix de $8.80 est effectif à partir du 1er mai ou des 900pcs du PO #8645 COST= PO8135 *1.4817
+2021-11-24 21:50:04,999 - engine_logger:INFO - Should have a bunch of newlines:5008 - COST = PO8645 =6,34 *1,3699
+boite standard 60pcs
+Le prix de $8.80 est effectif à partir du 1er mai ou des 900pcs du PO #8645 
+
+
+
+
+
+
+
+
+
+COST= PO8135  *1.4817
+2021-11-24 21:50:04,999 - engine_logger:INFO - Removing trailing whitespaces ...
+2021-11-24 21:50:05,120 - engine_logger:INFO - Removing leading whitespaces ...
+2021-11-24 21:50:05,215 - engine_logger:INFO - Removing repeated whitespaces ...
+2021-11-24 21:50:05,576 - engine_logger:INFO - Newlines should be gone:5008 - COST = PO8645 =6,34 *1,3699 boite standard 60pcs Le prix de $8.80 est effectif à partir du 1er mai ou des 900pcs du PO #8645 COST= PO8135 *1.4817

@@ -1,0 +1,10 @@
+# basic mode -defaults. Mode can be selected from a cmdline argument. (e.g. python main.py foo_mode)
+# thus we can define multiple modes independantly here & just switch when we launch as we need
+default:
+  main_program:
+    inputs_folder: "/inputs/"
+    outputs_folder: "/outputs/"
+    # list of maps, key == variable name in  program, value == filename in inputs_folder
+    files_to_read:
+      - products: produit.xlsx
+      - old_products: produit_old.xlsx

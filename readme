@@ -1,0 +1,16 @@
+about
+-----------
+
+A good "default" MainProgram. Essentially a wrapper around whatever application we might want. Comes with basic stuff like loading config files, test suite structure we can fill in, etc.
+
+usage
+---------
+
+python main.py --configs [config filepath] --mode [one of mode defined in config file]
+
+Both are arguments are optional. By default, we load the "default" mode defined in `configs.yaml` which should be placed
+in the project's root directory.
+
+NOTE: the default values are always set, regardless of the mode selected. What the other modes do is that they
+override any such values with whatever is put there. No need to fully re-defined all attribute if using
+a non-default mode.
