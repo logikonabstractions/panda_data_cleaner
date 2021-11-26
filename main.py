@@ -31,6 +31,7 @@ class MainProgram:
         """ run whatever the program is """
         self.data_man.read_files()
         self.data_man.clean_all_files()
+        self.data_man.files_to_csv()
 
 
     def init_args(self):

@@ -2,9 +2,120 @@
 # thus we can define multiple modes independantly here & just switch when we launch as we need
 default:
   main_program:
-    inputs_folder: "/inputs/"
-    outputs_folder: "/outputs/"
+    # outputs of this process is csv input for django model parser
+    inputs_folder: "inputs_beta_xlsx"
+    outputs_folder: "inputs_beta_csv"
     # list of maps, key == variable name in  program, value == filename in inputs_folder
     files_to_read:
-      - products: produit.xlsx
-      - old_products: produit_old.xlsx
+      produit:
+        filename: produit_short.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - dh_produit
+          - dh_creer
+          - last_reception
+      client:
+        filename: client.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - dh_creer
+          - dh_modifie
+      via:
+        filename: via.xlsx
+        treatment:
+          - clean_spaces
+        datefields: []
+      entsoum:
+        filename: entsoum.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - dh_soum
+          - date_soum
+          - date_suivi
+          - date_liv
+      detsoum:
+        filename: detsoum.xlsx
+        treatment:
+          - clean_spaces
+        datefields: []
+      entpick:
+        filename: entpick.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - date_pick
+          - date_liv
+        set_na_zeros:
+          - fk_bo
+      detpick:
+        filename: detpick.xlsx
+        treatment:
+          - clean_spaces
+        datefields: []
+      entfac:
+        filename: entfac.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - date_fac
+          - date_liv
+      detfac:
+        filename: detcont.xlsx
+        treatment:
+          - clean_spaces
+        datefields: []
+        set_na_zeros:
+          - detail
+      entcont:
+        filename: entcont.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - date_cont
+          - date_liv
+      detcont:
+        filename: detfac.xlsx
+        treatment:
+          - clean_spaces
+        datefields: []
+      ap_entcmd:
+        filename: ap_entcmd.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - date_cmd
+          - date_recu
+          - dh_cmd
+          - cutoff
+          - date_eta
+      ap_detcmd:
+        filename: ap_detcmd.xlsx
+        treatment:
+          - clean_spaces
+        datefields:
+          - vrai_date
+          - date_recu
+          - prevu
+    # check that the fk has a corresponding entry in the target table
+    fk_checks:
+      #source_file.fk_name: target_file.pk_name
+      - detsoum.fk_ent: entsoum.pk_ent
+      - entsoum.transport: via.pk_via
+      - entsoum.fk_pick: entpick.pk_ent
+      - entsoum.fk_cont: entcont.pk_ent
+      - detfac.fk_ent: entfac.pk_ent
+      - entfac.transport: via.pk_via
+      - entfac.fk_pick: entpick.pk_ent
+      - entfac.fk_soum: entsoum.pk_ent
+      - detpick.fk_ent: entpick.pk_ent
+      - entpick.transport: via.pk_via
+      - entpick.fk_soum: entsoum.pk_ent
+      - entpick.fk_cont: entcont.pk_ent
+      - entpick.fk_fac: entfac.pk_ent
+      - detcont.fk_ent: entcont.pk_ent
+      - entcont.transport: via.pk_via
+      - entcont.fk_pick: entpick.pk_ent
+      - entcont.fk_soum: entsoum.pk_ent

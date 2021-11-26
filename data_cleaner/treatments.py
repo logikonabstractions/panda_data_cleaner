@@ -45,3 +45,7 @@ def cleanup_spaces(df):
     df.replace(to_replace='\s\s+', value=" ", regex=True, inplace=True)       # remove duplicated spaces from previous stuff
 
     return df
+
+
+def fk_in_target():
+    pass
