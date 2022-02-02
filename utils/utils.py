@@ -8,13 +8,18 @@ CONFIGS_FILE        = "configs.json"
 # others
 BASE_LOGGER_NAME    = "engine_logger"
 ROOT                = sys.path[0]
-XLSX_ROOT           = "/home/fv/Documents/pro-2020/voltec/db_djangomodels_parser"
+# XLSX_ROOT           = "/home/fv/Documents/pro-2020/voltec/db_djangomodels_parser"
 
+from utils.logger import get_root_logger
+L = get_root_logger("engine_logger")
 
 class Configs:
     """ just a wrapper around the config file, so we can easily add props etc.. for conveniences"""
     def __init__(self, configs):
         self.cf = configs
+        # we use the xlsx_root if provided, if none we use the project's root
+        if configs:
+            self.xlsx_root = configs["main_program"].get("xlsx_root") if configs["main_program"].get("xlsx_root") else ROOT
 
     def get_date_fields(self, filename):
         """ returns the list of fields marked as date for this file form the configs """
@@ -24,6 +29,18 @@ class Configs:
         """ returns the configs for a specific file """
         return self.files_to_read[filename]
 
+
+    def get_treatments(self, filename):
+        """ returns the configs for a specific file """
+        try:
+            return self.files_to_read[filename]["treatments"]
+        except Exception as ex:
+            L.info(f"Couldn't get treatement for filename {filename}. Ex: {ex}")
+
+    @property
+    def merges(self):
+        return self.cf["main_program"]["merges"]
+
     @property
     def files_to_read(self):
         """ returns the configs relevent for the data manager """
@@ -32,14 +49,14 @@ class Configs:
     @property
     def inputs_folder(self):
         # return f'{XLSX_ROOT}/{self.cf["main_program"]["inputs_folder"]}'
-        return f'{os.path.join(XLSX_ROOT, self.cf["main_program"]["inputs_folder"])}'
+        return f'{os.path.join(self.xlsx_root, self.cf["main_program"]["inputs_folder"])}'
 
     @property
     def outputs_folder(self):
         # return f'{XLSX_ROOT}/{self.cf["main_program"]["inputs_folder"]}'
-        return f'{os.path.join(XLSX_ROOT, self.cf["main_program"]["outputs_folder"])}'
+        return f'{os.path.join(self.xlsx_root, self.cf["main_program"]["outputs_folder"])}'
 
     @property
     def fk_checks(self):
         """ returns the details of fk to check """
-        return self.cf["main_program"]["fk_checks"]
+        return self.cf["main_program"].get("fk_checks")

@@ -20,7 +20,7 @@ xlsx_df = pd.read_excel(f"./inputs/{file_name}", header=0, usecols=oldcols)
 log.info(f"{file_name} has been read: {xlsx_df.columns}")
 # zfac = pd.read_excel("./inputs/zfacture.xlsx", header=0)
 # log.info(f"zfac has been read: {zfac.columns}")
-xlsx_df = cleanup_spaces(xlsx_df)
+xlsx_df = cleanup_spaces_symboles(xlsx_df)
 
 # write the fie to excel
 xlsx_df.to_excel("produits_new.xlsx")

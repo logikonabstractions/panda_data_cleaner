@@ -1,121 +1,453 @@
 # basic mode -defaults. Mode can be selected from a cmdline argument. (e.g. python main.py foo_mode)
 # thus we can define multiple modes independantly here & just switch when we launch as we need
+
+# default stuff most treatment is likely to use
+base_treatment: &base_treatment
+#  treatments: []
+  treatments:
+    - clean_spaces
+    - clean_bools
+    - clean_dates
+
+
 default:
   main_program:
     # outputs of this process is csv input for django model parser
+    xlsx_root: "/home/fv/Documents/pro-2020/voltec/db_djangomodels_parser"
     inputs_folder: "inputs_beta_xlsx"
     outputs_folder: "inputs_beta_csv"
     # list of maps, key == variable name in  program, value == filename in inputs_folder
     files_to_read:
-      produit:
-        filename: produit_short.xlsx
-        treatment:
-          - clean_spaces
-        datefields:
-          - dh_produit
-          - dh_creer
-          - last_reception
-      client:
-        filename: client.xlsx
-        treatment:
-          - clean_spaces
-        datefields:
-          - dh_creer
-          - dh_modifie
-      via:
-        filename: via.xlsx
-        treatment:
-          - clean_spaces
-        datefields: []
-      entsoum:
-        filename: entsoum.xlsx
-        treatment:
-          - clean_spaces
-        datefields:
-          - dh_soum
-          - date_soum
-          - date_suivi
-          - date_liv
-      detsoum:
-        filename: detsoum.xlsx
-        treatment:
-          - clean_spaces
-        datefields: []
-      entpick:
-        filename: entpick.xlsx
-        treatment:
-          - clean_spaces
-        datefields:
-          - date_pick
-          - date_liv
-        set_na_zeros:
-          - fk_bo
-      detpick:
-        filename: detpick.xlsx
-        treatment:
-          - clean_spaces
-        datefields: []
-      entfac:
-        filename: entfac.xlsx
-        treatment:
-          - clean_spaces
-        datefields:
-          - date_fac
-          - date_liv
-      detfac:
-        filename: detcont.xlsx
-        treatment:
-          - clean_spaces
-        datefields: []
-        set_na_zeros:
-          - detail
-      entcont:
-        filename: entcont.xlsx
-        treatment:
-          - clean_spaces
-        datefields:
-          - date_cont
-          - date_liv
-      detcont:
-        filename: detfac.xlsx
-        treatment:
-          - clean_spaces
-        datefields: []
       ap_entcmd:
         filename: ap_entcmd.xlsx
-        treatment:
-          - clean_spaces
+        <<: *base_treatment
         datefields:
           - date_cmd
           - date_recu
           - dh_cmd
           - cutoff
           - date_eta
+          - dhlfacture
+          - dt_signer
+        set_na_zeros:
+          - total
+          - totalt
       ap_detcmd:
         filename: ap_detcmd.xlsx
-        treatment:
-          - clean_spaces
+        <<: *base_treatment
         datefields:
           - vrai_date
-          - date_recu
+          - recu
           - prevu
+        set_na_zeros:
+          - min_order
+          - par_boite
+          - par_palette
+      ap_esample:
+        filename: ap_esample.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_cmd
+          - date_recu
+          - dh_cmd
+          - cutoff
+          - date_eta
+          - dhlfacture
+          - dt_signer
+      ap_dsample:
+        filename: ap_dsample.xlsx
+        <<: *base_treatment
+        datefields:
+          - vrai_date
+          - recu
+      bins:
+        filename: bins.xlsx
+        <<: *base_treatment
+        datefields: []
+      case:
+        filename: case.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_case
+          - dh_supprimer
+      client:
+        filename: client.xlsx
+        <<: *base_treatment
+        datefields:
+          - dh_creer
+          - dh_modifie
+        set_na_zeros:
+          - fk_terr2
+      courriel:
+        filename: courriel.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      detclaim:
+        filename: detclaim.xlsx
+        <<: *base_treatment
+        datefields:
+          - recu
+        set_na_zeros: []
+      detcomm:
+        filename: detcomm.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      detcmd2:
+        filename: detcmd2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      detrma:
+        filename: detrma.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      detcont:
+        filename: detcont.xlsx
+        <<: *base_treatment
+        datefields: []
+      detfac:
+        filename: detfac.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros:
+          - detail
+      detpick:
+        filename: detpicks_merged.xlsx
+        <<: *base_treatment
+        datefields: []
+      detsoum:
+        filename: detsoum.xlsx
+        <<: *base_treatment
+        datefields: []
+      entclaim:
+        filename: entclaim.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_cmd
+          - date_recu
+          - dh_cmd
+          - date_eta
+          - cutoff
+          - dt_signer
+        set_na_zeros: []
+      entcmd2:
+        filename: entcmd2.xlsx
+        <<: *base_treatment
+        datefields:
+          - dh
+          - dh_recu
+          - dt_signer
+        set_na_zeros: []
+      entcomm:
+        filename: entcomm.xlsx
+        <<: *base_treatment
+        datefields:
+          - date
+        set_na_zeros: []
+      entpick:
+        filename: entpick_merged.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_pick
+          - date_liv
+        set_na_zeros:
+          - fk_bo
+          - transport
+      entfac:
+        filename: entfac.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_fac
+          - date_liv
+      entcont:
+        filename: entcont.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_cont
+          - date_liv
+      entrma:
+        filename: entrma.xlsx
+        <<: *base_treatment
+        datefields:
+          - dh_rma
+          - date_rma
+          - date_liv
+        set_na_zeros: []
+      entsoum:
+        filename: entsoum.xlsx
+        <<: *base_treatment
+        datefields:
+          - dh_soum
+          - date_soum
+          - date_suivi
+          - date_liv
+        set_na_zeros:
+          - transport
+      fournis:
+        filename: fournis.xlsx
+        <<: *base_treatment
+        datefields: []
+      fournis2:
+        filename: fournis2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      fourprod:
+        filename: fourprod.xlsx
+        <<: *base_treatment
+        datefields: []
+      groupe:
+        filename: groupe.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      groupe2:
+        filename: groupe2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      groupe_esc:
+        filename: groupe_esc.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      groupe_esc2:
+        filename: groupe_esc2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      kit:
+        filename: kit.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      produit:
+        filename: produit.xlsx
+        <<: *base_treatment
+        datefields:
+          - dh_produit
+          - dh_creer
+          - last_reception
+        set_na_zeros:
+          - qte_ama
+          - prev_pdesuet
+          - qte_reception
+      scan:
+        filename: scan.xlsx
+        <<: *base_treatment
+        datefields:
+          - date_scan
+          - date_avant
+          - date_apres
+      source:
+        filename: source.xlsx
+        treatment: []
+        datefields: []
+      statprod:
+        filename: statprod.xlsx
+        treatment: []
+        datefields: []
+      statcli:
+        filename: statcli.xlsx
+        treatment: []
+        datefields: []
+#      statprodall:
+#        filename: statprodall.xlsx
+#        treatment: []
+#        datefields: []
+      terme:
+        filename: terme.xlsx
+        <<: *base_treatment
+        datefields: []
+      taxe:
+        filename: taxe.xlsx
+        <<: *base_treatment
+        datefields: []
+      typetaxe:
+        filename: typetaxe.xlsx
+        <<: *base_treatment
+        datefields: []
+      territoire:
+        filename: territoire.xlsx
+        <<: *base_treatment
+        datefields: []
+      typec:
+        filename: typec.xlsx
+        <<: *base_treatment
+        datefields: []
+      vendeur:
+        filename: vendeur.xlsx
+        <<: *base_treatment
+        datefields: []
+      via:
+        filename: via.xlsx
+        <<: *base_treatment
+        datefields: []
+
+
+
     # check that the fk has a corresponding entry in the target table
     fk_checks:
       #source_file.fk_name: target_file.pk_name
+      #   PO
+      - ap_entcmd.fk_four: fournis.pk_four
+      - ap_detcmd.fk_ent: ap_entcmd.pk_ent
+      - ap_detcmd.fk_prod: produit.pk_produit
+      - ap_detcmd.fk_fourprod: fourprod.pk_fourprod
+      - ap_esample.fk_four: fournis.pk_four
+      - ap_dsample.fk_ent: ap_esample.pk_ent
+      - ap_dsample.fk_prod: produit.pk_produit
+      - ap_dsample.fk_fourprod: fourprod.pk_fourprod
+      - ap_esample.fk_four: fournis.pk_four
+      - detcmd2.fk_ent: entcmd2.pk_ent
+      #   CLIENT
+      - client.fk_clientf: client.pk_client
+      - client.fk_typec: typec.pk_typec
+      - client.fk_terr: territoire.pk_terr
+      - client.fk_terr2: territoire.pk_terr
+      - client.fk_vendeur: vendeur.pk_vendeur
+      - client.fk_terme: terme.pk_terme
+      - client.transport: via.pk_via
+      - client.type_taxe: typetaxe.pk_typetaxe
+      #   CLAIMS
+      - detclaim.fk_ent: entclaim.pk_ent
+      - detclaim.fk_prod: produit.pk_produit
+      - detclaim.fk_fourprod: fourprod.pk_fourprod
+      - entclaim.fk_four: fournis.pk_four
+      # COMM
+      - detcomm.fk_ent: entcomm.pk_ent
+      #   CONTRACTS
+      - detcont.fk_ent: entcont.pk_ent
+      - detcont.fk_produit: produit.pk_produit
+      - entcont.fk_source: source.pk_source
+      - entcont.transport: via.pk_via
+      - entcont.fk_vendeur: vendeur.pk_vendeur
+      - entcont.fk_pick: entpick.pk_ent
+      - entcont.fk_soum: entsoum.pk_ent
+      - entcont.fk_client: client.pk_client
+      - entcont.fk_clientf: client.pk_client
+      - entcont.fk_terme: terme.pk_terme
+      #   FACTURATION
+      - detfac.fk_ent: entfac.pk_ent
+      - detfac.fk_produit: produit.pk_produit
+      - entfac.fk_source: source.pk_source
+      - entfac.fk_pick: entpick.pk_ent
+      - entfac.fk_cancel: entfac.pk_ent
+      - entfac.fk_soum: entsoum.pk_ent
+      - entfac.fk_cont: entcont.pk_ent
+      - entfac.fk_rma: entrma.pk_ent
+      - entfac.transport: via.pk_via
+      - entfac.fk_vendeur: vendeur.pk_vendeur
+      - entfac.fk_client: client.pk_client
+      - entfac.fk_clientf: client.pk_client
+      - entfac.fk_terme: terme.pk_terme
+      #   SOUMISSION
       - detsoum.fk_ent: entsoum.pk_ent
+      - detsoum.fk_produit: produit.pk_produit
+      - entsoum.fk_source: source.pk_source
+      - entsoum.fk_vendeur: vendeur.pk_vendeur
       - entsoum.transport: via.pk_via
       - entsoum.fk_pick: entpick.pk_ent
       - entsoum.fk_cont: entcont.pk_ent
-      - detfac.fk_ent: entfac.pk_ent
-      - entfac.transport: via.pk_via
-      - entfac.fk_pick: entpick.pk_ent
-      - entfac.fk_soum: entsoum.pk_ent
+      - entsoum.fk_client: client.pk_client
+      - entsoum.fk_clientf: client.pk_client
+      - entsoum.fk_terme: terme.pk_terme
+      #   PICKINGS
       - detpick.fk_ent: entpick.pk_ent
+      - detpick.fk_produit: produit.pk_produit
+      - entpick.fk_source: source.pk_source
       - entpick.transport: via.pk_via
+      - entpick.fk_vendeur: vendeur.pk_vendeur
       - entpick.fk_soum: entsoum.pk_ent
       - entpick.fk_cont: entcont.pk_ent
       - entpick.fk_fac: entfac.pk_ent
-      - detcont.fk_ent: entcont.pk_ent
-      - entcont.transport: via.pk_via
-      - entcont.fk_pick: entpick.pk_ent
-      - entcont.fk_soum: entsoum.pk_ent
+      - entpick.fk_rma: entrma.pk_ent
+      - entpick.fk_client: client.pk_client
+      - entpick.fk_clientf: client.pk_client
+      - entpick.fk_terme: terme.pk_terme
+      - entcmd2.fk_four2: fournis2.Pk_fournis
+      #   RMA
+      - detrma.fk_ent: entrma.pk_ent
+      - detrma.fk_produit: produit.pk_produit
+      - entrma.fk_client: client.pk_client
+      - entrma.fk_clientf: client.pk_client
+      - entrma.fk_terme: terme.pk_terme
+      - entrma.fk_vendeur: vendeur.pk_vendeur
+      - entrma.fk_source: source.pk_source
+      - entrma.fk_pick: entpick.pk_ent
+      #   PRODUITS
+      - produit.fk_grp: groupe.pk_groupe
+      - produit.fk_grp2: groupe2.Pk_groupe
+      - fourprod.fk_produit: produit.pk_produit
+      - fourprod.fk_fournis: fournis.pk_four
+      #   CASES/BINS
+      - case.fk_prod: produit.pk_produit
+      - case.fk_bins: bins.pk_bins
+      # GROUPE PROD
+      - groupe2.fk_groupe1: groupe.pk_groupe
+      #   GROUPES_ESC & others
+      - groupe_esc.fk_client: client.pk_client
+      - groupe_esc2.fk_client: client.pk_client
+      - groupe_esc2.fk_groupe1: groupe.pk_groupe
+      - groupe_esc2.fk_groupe2: groupe2.Pk_groupe
+      - groupe2.fk_groupe1: groupe.pk_groupe
+      - kit.fk_produit: produit.pk_produit
+      - kit.fk_prodkit: produit.pk_produit
+      - scan.fk_prod: produit.pk_produit
+      - scan.fk_bins: bins.pk_bins
+      - courriel.fk_client: client.pk_client
+      - statcli.fk_client: client.pk_client
+      - statprod.fk_produit: produit.pk_produit
+      - typetaxe: taxe.pk_typetaxe
+
+# quick tests etc.
+dummy:
+  main_program:
+    # outputs of this process is csv input for django model parser
+#    xlsx_root: "/home/fv/Documents/pro-2020/voltec/db_djangomodels_parser"
+#    inputs_folder: "inputs_beta_xlsx"
+#    outputs_folder: "inputs_beta_csv"
+    xlsx_root:
+    inputs_folder: "inputs"
+    outputs_folder: "outputs"
+    # list of maps, key == variable name in  program, value == filename in inputs_folder
+    files_to_read:
+      client:
+        filename: client.xlsx
+        <<: *base_treatment
+        datefields:
+          - dh_creer
+          - dh_modifie
+        set_na_zeros:
+          - fk_terr2
+      territoire:
+        filename: territoire.xlsx
+        <<: *base_treatment
+        datefields: []
+    fk_checks:
+      - client.fk_terr2: territoire.pk_terr
+
+merge:
+  main_program:
+    xlsx_root:
+    inputs_folder: "inputs"
+    outputs_folder: "outputs"
+    # list of maps, key == variable name in  program, value == filename in inputs_folder
+    files_to_read:
+      file1:
+        filename: entpick.xlsx
+      file2:
+        filename: entpickf.xlsx
+    merges:
+    # describes which files_to_read to merge with which other file. can only merge 1 by 1 (cannot merge 3 or 4 in one shot)
+      entpick:
+        files:
+          - file1
+          - file2
+        output_name: entpick.xlsx
+        pk_name: pk_ent
+
+

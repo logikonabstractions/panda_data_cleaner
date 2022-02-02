@@ -24,14 +24,16 @@ def merge_entfacs(main_entfac, entfacs):
     main_entfac.drop_duplicates(inplace=True, subset=["pk_ent"])
 
     # remove any trailing whitespace
-    main_entfac = cleanup_spaces(main_entfac)
+    main_entfac = cleanup_spaces_symboles(main_entfac)
     return main_entfac
 
-def cleanup_spaces(df):
+def cleanup_spaces_symboles(df):
     """ takes a dataframe & cleans up dbase's weird spaces:
         - trailing whitespaces
         - leading whitespaces
         - repeated whitespaces within text
+        - ; characters (as those are separators chars)
+        - + signes (since they can get confused for ocmplex number and mess up the data)
     """
     log.info(f"Removing trailing whitespaces ...")
     df.replace(to_replace='\s*$', value="", regex=True, inplace=True)       # trailing
@@ -39,6 +41,8 @@ def cleanup_spaces(df):
     df.replace(to_replace='^\s*', value="", regex=True, inplace=True)       # leading
     log.info(f"Removing repeated whitespaces ...")
     df.replace(to_replace='\n', value=" ", regex=True, inplace=True)       # newlines
+    df.replace(to_replace=';', value=" ", regex=True, inplace=True)       # SEPARATORS
+    df.replace(to_replace='+', value="plus", regex=True, inplace=True)       # complex number bug with json serializer
     df.replace(to_replace='\r', value=" ", regex=True, inplace=True)       # carriage returns
     df.replace(to_replace='\t', value=" ", regex=True, inplace=True)       # tabs
     df.replace(to_replace='_x000D_', value=" ", regex=True, inplace=True)    # weird placeholdesr for carriage returns

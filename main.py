@@ -1,4 +1,4 @@
-from data_cleaner.DataManager import DataManager
+from data_cleaner.Programs import MergeData, CleanData
 from utils.utils import *
 from classes.arg_parser import ArgParser
 from utils.logger import get_root_logger
@@ -18,10 +18,12 @@ class MainProgram:
         self.LOG            = logger if logger else self.get_logger()
         self.arg_parser     = arg_parser if arg_parser else ArgParser(self.LOG)
         self.configs   = None
+        self.prog_name = None
+        self.prog       = None
         self.init_args()
 
-        # init DataManager
-        self.data_man = DataManager(self.configs)
+        # init program
+        # self.data_man = DataManager(self.configs)
 
         self.LOG.info(f"Current mode {self.mode}.")
         self.LOG.info(f"Configs for current mode {self.configs}.")
@@ -29,9 +31,11 @@ class MainProgram:
 
     def run(self):
         """ run whatever the program is """
-        self.data_man.read_files()
-        self.data_man.clean_all_files()
-        self.data_man.files_to_csv()
+        L.info(f"Running program {self.prog_name}")
+        self.prog.run()
+        # self.data_man.read_files()
+        # self.data_man.clean_all_files()
+        # self.data_man.files_to_csv()
 
 
     def init_args(self):
@@ -59,6 +63,13 @@ class MainProgram:
         # then pass it to the wrapper for convenience
         self.configs = Configs(self.configs[self.mode])
 
+        # set the program class onwhich to call run()
+        if self.args.prog_name == "merge":
+            self.prog = MergeData(self.configs)
+        else:                                           # defaul - clean the data
+            self.prog = CleanData(self.configs)
+
+
     @property
     def mode(self):
         """ the config mode we want. defaults is set by argparser at default"""
@@ -67,6 +78,7 @@ class MainProgram:
     @property
     def args(self):
         return self.arg_parser.args
+
 
 
 
