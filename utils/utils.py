@@ -31,11 +31,19 @@ class Configs:
 
 
     def get_treatments(self, filename):
-        """ returns the configs for a specific file """
+        """ """
         try:
             return self.files_to_read[filename]["treatments"]
         except Exception as ex:
             L.info(f"Couldn't get treatement for filename {filename}. Ex: {ex}")
+            return []
+    def get_pretreatments(self, filename):
+        """ """
+        try:
+            return self.files_to_read[filename]["pretreatments"]
+        except Exception as ex:
+            L.info(f"No pretreatments for filename {filename}. Ex: {ex}")
+            return []
 
     @property
     def merges(self):
