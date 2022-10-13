@@ -19,7 +19,10 @@ class Configs:
         self.cf = configs
         # we use the xlsx_root if provided, if none we use the project's root
         if configs:
-            self.xlsx_root = configs["main_program"].get("xlsx_root") if configs["main_program"].get("xlsx_root") else ROOT
+            if os.environ.get("ROOT_INPUT_FILES_DIR"):
+                self.xlsx_root = os.environ.get("ROOT_INPUT_FILES_DIR")
+            else:
+                self.xlsx_root = configs["main_program"].get("xlsx_root") if configs["main_program"].get("xlsx_root") else ROOT
 
     def get_date_fields(self, filename):
         """ returns the list of fields marked as date for this file form the configs """
@@ -56,13 +59,17 @@ class Configs:
 
     @property
     def inputs_folder(self):
-        # return f'{XLSX_ROOT}/{self.cf["main_program"]["inputs_folder"]}'
-        return f'{os.path.join(self.xlsx_root, self.cf["main_program"]["inputs_folder"])}'
+        if os.environ.get("RAW_INPUT_XLSX"):
+            return f'{os.path.join(self.xlsx_root, os.environ.get("RAW_INPUT_XLSX"))}' 
+        else:
+            return f'{os.path.join(self.xlsx_root, self.cf["main_program"]["inputs_folder"])}'
 
     @property
     def outputs_folder(self):
-        # return f'{XLSX_ROOT}/{self.cf["main_program"]["inputs_folder"]}'
-        return f'{os.path.join(self.xlsx_root, self.cf["main_program"]["outputs_folder"])}'
+        if os.environ.get("CLEANED_INPUT_CSV"):
+            return f'{os.path.join(self.xlsx_root, os.environ.get("CLEANED_INPUT_CSV"))}' 
+        else:
+            return f'{os.path.join(self.xlsx_root, self.cf["main_program"]["outputs_folder"])}'
 
     @property
     def fk_checks(self):

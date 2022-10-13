@@ -16,6 +16,7 @@ class CleanData:
 
     def run(self):
         """ run whatever the program is """
+        L.info(f"Running CleanData program... ")
         self.data_man.read_files()
         self.data_man.clean_all_files()
         self.data_man.files_to_csv()
@@ -28,6 +29,7 @@ class MergeData:
 
     def run(self):
         """ run whatever the program is """
+        L.info(f"Running MergeData program.... ")
         self.data_man.read_files()
         self.merge_files_on_columns()
 

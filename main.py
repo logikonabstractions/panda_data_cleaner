@@ -40,7 +40,6 @@ class MainProgram:
 
     def init_args(self):
         """ parses whatever args we have & sets up this class accordingly
-
             attribute must already be declared in the class - otherwise they are ignored
         """
         self.arg_parser.parse_cmdline()

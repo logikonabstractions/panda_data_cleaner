@@ -18,13 +18,14 @@ class DataManager:
         for var, details in self.cf.files_to_read.items():
             L.info(f"reading {var} - {details}")
             df = pd.read_excel(os.path.join(self.cf.inputs_folder, details["filename"]))
+            # L.info(f"Finished reading as DF")
             setattr(self, var, df)
             self.files_list.append(var)           # accounting stuff
 
     def files_to_csv(self):
         """ writes all the df we have treated into csv for fixtures inputs """
         for f in self.files_list:
-            L.info(f"Writing file {f} to csv ")
+            L.info(f"Writing file {f} to csv at {os.path.join(self.cf.outputs_folder, f'{f}.csv')} ")
             df = getattr(self, f, None)
             df.to_csv(os.path.join(self.cf.outputs_folder, f"{f}.csv"), index=False)
 
@@ -62,12 +63,22 @@ class DataManager:
                     for conf in fconfs.get("set_na_zeros"):
                         df[conf].fillna(0, inplace=True)
 
+                if fconfs.get("set_na_null"):         # cols we want to set to set all missing val to null values/None
+                    for conf in fconfs.get("set_na_null"):
+                        df[conf].fillna("None", inplace=True)
+
+
+                # replace all NA by empty vals or nulls?
+                # df.fillna("None", inplace=True)
+        
                 # MUST settr otherwise any modification not done in-place will be ignored
                 setattr(self, f, df)
 
             except Exception as ex:
                 L.error(f"Error cleaning all files: {f}. Ex: {ex}")
                 raise Exception(f"Cannot data processing - please fixe errors {ex}")
+
+        
 
         # checking for missing foreign keys
         self.fk_checks()
@@ -83,7 +94,7 @@ class DataManager:
                         fk_filename, fk_name = fk.split(sep=".")
                         target_file, target_name = target.split(sep=".")
                         fk_file = getattr(self, fk_filename)
-                        L.error(f"FK_CHECK: SOURCE:{fk_filename}, TARGET:{target_file}, FIELD:{fk_name}")
+                        L.info(f"FK_CHECK: SOURCE:{fk_filename}, TARGET:{target_file}, FIELD:{fk_name}")
 
                         # get the panda columns
                         fk_col = getattr(self, fk_filename)[fk_name]
@@ -98,6 +109,10 @@ class DataManager:
                         # fk_file[fk_name] = ans
                         L.info(f"fk table: {fk_filename}, fkname: {fk_name}, target table: {target_file}, targetname: {target_name},  ")
                     except Exception as ex:
+                        L.error(f"################## ########################")
+                        L.error(f"################## ########################")
+                        L.error(f"################## ########################")
+                        L.error(f"FK check failed / exception during fk check.")
                         L.error(f"Exc: {ex}")
 
     def clean_dates(self, df, filename):
@@ -163,6 +178,15 @@ class DataManager:
         to_replace = configs["to_replace"]
         value = configs["value"]
         df.update(df.loc[:, cols].replace(to_replace=to_replace, value=value))
+        return df
+
+    def fill_nan_values(self, df, configs):
+        """ fills the nan values 
+        """
+        L.info(f"Fill nan values in cols: {configs}")
+        cols = configs["columns"]
+        value = configs["value"]
+        df.update(df.loc[:, cols].fillna(value))
         return df
 
     def insert_pk_0(self, df, configs):

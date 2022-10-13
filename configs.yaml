@@ -28,26 +28,790 @@ pretreatments:
       - date_eta
       - cutoff
       - dt_signer
+      # fixing blanks in boolean mandatory fields issue, this is all bool fields with defaults to False
+  - replace_value_in_cols:
+      to_replace: ''
+      value: false 
+      columns:
+      - inactif
+      - no_invent
+      - web
+      - desuet
+      - venmar
+      - atelier
+      - kit
+      - sample
+      - supprimer
+      - prepaid
+      - bloquer
+      - paremail
+      - asap
+      - duplic
+      - prix_cli
+      - bo
+      - reserve
+      - scan
+      - reviser
+      - facture
+      - packing
+      - BL
+      - attente
+      - onrail
+      - signer
+      - reviser
+      - faire_suivi
+      - prepaid
+      - prepaid
+      - prepaid
+      - prepaid
+      # fixing blanks in boolean mandatory fields issue, this is all bool fields with defaults to True
+  - replace_value_in_cols:
+      to_replace: ''
+      value: true 
+      columns:
+      - modifiable
+      - actif
   # copies the 1st row, changes the pk to 0
   - insert_pk_0:
       pk_colname: pk_ent
       pk_value: 0
 
 
-default:
+antoine_outputs:
   main_program:
     # outputs of this process is csv input for django model parser
-    xlsx_root: "/home/fv/Documents/pro-2020/voltec/ressources/DATA-FEV-22"
-    inputs_folder: "cleaned_data_xlsx"
-    outputs_folder: "cleaned_csv"
+    xlsx_root: "/home/fv/Documents/pro-2020/voltec/ressources/TEST_BETA_220805/datadump/"
+    inputs_folder: "raw"
+    outputs_folder: "cleaned"
     # list of maps, key == variable name in  program, value == filename in inputs_folder
     files_to_read:
+      # accountingreportsmodel: no data as this is just a journal of demanded outputs
+      # acombaactionsmodel: same
+      # reports2model: same
+      # courrielsvoltech: not yet implement/new thing
+      # prixcli: it's in the schema, I think I re-created bc I didn't get the actual data
+      # source: I have the data; think some might be missing
+      # taux: not imported atm; just a historic list of usd-cad exchange rates. would prob. want to source that online 
+      # taxe: manually created an xlsx file.
+      # typetaxe: manually created
+      # terme: some might be missing in data. 
+      # voltecinfo: added by myself to manage random bits of info I'm not how it is managed in dbase
+      # entpickf.xlsx: ????
+      # documentproduit: mapping docs to products, not in dbase
+      # imageproduit: mapping images to products, not in dbase
+      # histoquantity: records qte adjustemnets, no in dbase
+      # statprodall: currently no table, need to check it
+      # statprod: Need to add pk_statprod field as absent from dbase output
+      # usager.xlsx: not directly import. see create_user scrip instead.      
+
+      ap_entcmd:
+        filename: AP_entcmd.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - date_eta
+              - cutoff
+              - dt_signer
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - reviser
+              - facture
+              - packing
+              - BL
+              - attente
+          - fill_nan_values:
+              value: true
+              columns:
+              - actif              
+        <<: *base_treatment
+        datefields:
+          - date_cmd
+          - date_recu
+          - dh_cmd
+          - cutoff
+          - date_eta
+          - dhlfacture
+          - dt_signer
+        set_na_zeros:
+          - total
+          - totalt
+        set_na_null:
+          - fk_signer               
       detfac:
         filename: detfac.xlsx
         <<: *base_treatment
         datefields: [ ]
         set_na_zeros:
           - detail
+      ap_detcmd:
+        filename: AP_detcmd.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - recu
+              - vrai_date
+              - prevu
+        <<: *base_treatment
+        datefields:
+          - vrai_date
+          - recu
+          - prevu
+        set_na_zeros:
+          - min_order
+          - par_boite
+          - par_palette
+      ap_esample:
+        filename: ap_esample.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - date_recu
+              - cutoff
+              - date_eta
+              - dt_signer
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - reviser
+              - signer                      
+        <<: *base_treatment
+        datefields:
+          - date_cmd
+          - date_recu
+          - dh_cmd
+          - cutoff
+          - date_eta
+          - dt_signer
+        set_na_null:
+          - fk_signer
+      ap_dsample:
+        filename: ap_dsample.xlsx
+        <<: *base_treatment
+        datefields:
+          - vrai_date
+          - recu
+      bins:
+        filename: bins.xlsx
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: pk_bins
+              pk_value: 0          
+        <<: *base_treatment
+        datefields: []
+      case:
+        filename: case.xlsx
+        <<: *base_treatment
+        pretreatments:
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - dh_supprimer
+          - fill_nan_values:
+              value: false
+              columns:
+              - supprimer
+        datefields:
+          - date_case
+          - dh_supprimer
+      client:
+        filename: client.xlsx
+        <<: *base_treatment
+        pretreatments:
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - dh_creer
+              - dh_modifie
+          - insert_pk_0:
+              pk_colname: pk_client
+              pk_value: 0                 
+        datefields:
+          - dh_creer
+          - dh_modifie
+        set_na_zeros:
+          - fk_terr2
+      courriel:
+        filename: courriel.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+        pretreatments:
+          - fill_nan_values:
+              value: false
+              columns:
+              - actif      
+      detclaim:
+        filename: detclaim.xlsx
+        pretreatments:
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - recu
+          - fill_nan_values:
+              value: false
+              columns:
+              - scrap               
+        <<: *base_treatment
+        datefields:
+          - recu
+        set_na_zeros: []
+      detcomm:
+        filename: detcomm.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      detcmd2:
+        filename: detcmd2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+
+      detrma:
+        filename: detrma.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      detcont:
+        filename: detcont.xlsx
+        <<: *base_treatment
+        datefields: []
+      detpick:
+        filename: detpick.xlsx
+        <<: *base_treatment
+        datefields: []
+      detsoum:
+        filename: detsoum.xlsx
+        <<: *base_treatment
+        datefields: []
+      entclaim:
+        filename: entclaim.xlsx
+        <<: *base_treatment
+        pretreatments:
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - date_recu
+              - cutoff
+              - date_eta
+              - dt_signer
+          - fill_nan_values:
+              value: false
+              columns:
+              - combine_po               
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - reviser
+              - signer                  
+        datefields:
+          - date_cmd
+          - date_recu
+          - dh_cmd
+          - date_eta
+          - cutoff
+          - dt_signer
+        set_na_zeros: []
+        set_na_null:
+          - fk_signer        
+      entcmd2:
+        filename: entcmd2.xlsx
+        pretreatments:
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - dh_recu
+              - dt_signer
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - reviser
+              - signer                  
+        <<: *base_treatment
+        datefields:
+          - dh
+          - dh_recu
+          - dt_signer
+        set_na_zeros: []
+        set_na_null:
+          - fk_signer           
+      entcomm:
+        filename: entcomm.xlsx
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+        <<: *base_treatment
+        datefields:
+          - date
+        set_na_zeros: []
+      entpick:
+        filename: entpick.xlsx
+        <<: *base_treatment
+        set_na_zeros:
+          - fk_bo
+          - transport
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - date_liv
+          - replace_value_in_cols:
+              to_replace: 0
+              value: ''
+              columns:
+              - fk_cont
+              - fk_soum
+              - fk_rma
+              - fk_fac
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - reserve              
+              - bo              
+        <<: *base_treatment
+        datefields:
+          - date_pick
+          - dh_pick
+          - date_liv
+      entfac:
+        filename: entfac.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - date_liv
+          - replace_value_in_cols:
+              to_replace: 0
+              value: ''
+              columns:
+              - fk_cont
+              - fk_soum
+              - fk_pick
+              - fk_rma
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: true
+              columns:
+              - prix_trspf               
+        <<: *base_treatment
+        datefields:
+          - date_fac
+          - dh_fac
+          - date_liv
+      entcont:
+        filename: entcont.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: 0
+              value: ''
+              columns:
+                - fk_soum
+                - fk_client
+                - fk_pick
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - duplic
+        <<: *base_treatment
+        datefields:
+          - date_cont
+          - date_liv
+          - dh_cont
+      entrma:
+        filename: entrma.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+                - date_liv
+          - replace_value_in_cols:
+              to_replace: 0
+              value: ''
+              columns:
+                - fk_pick
+
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+        <<: *base_treatment
+        datefields:
+          - dh_rma
+          - date_rma
+          - date_liv
+        set_na_zeros: []
+      entsoum:
+        filename: entsoum.xlsx
+        <<: *base_treatment
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+                - date_liv
+                - date_suivi
+          - replace_value_in_cols:
+              to_replace: 0
+              value: ''
+              columns:
+                - fk_cont
+                - fk_pick
+          - insert_pk_0:
+              pk_colname: pk_ent
+              pk_value: 0
+          - fill_nan_values:
+              value: false
+              columns:
+              - etude              
+              - faire_suivi                
+        datefields:
+          - dh_soum
+          - date_soum
+          - date_suivi
+          - date_liv
+        set_na_zeros:
+          - transport
+      fournis:
+        filename: fournis.xlsx
+        <<: *base_treatment
+        datefields: []
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: pk_four
+              pk_value: 0
+      fournis2:
+        filename: fournis2.xlsx
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: Pk_fournis
+              pk_value: 0
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      fourprod:
+        filename: fourprod.xlsx
+        <<: *base_treatment
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: pk_fourprod
+              pk_value: 0
+        datefields: []
+      groupe:
+        filename: groupe.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      groupe2:
+        filename: groupe2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      groupe_esc:
+        filename: groupe_esc.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      groupe_esc2:
+        filename: groupe_esc2.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      kit:
+        filename: kit.xlsx
+        <<: *base_treatment
+        datefields: []
+        set_na_zeros: []
+      produit:
+        filename: produit.xlsx
+        pretreatments:
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - dh_produit
+              - last_reception
+          # copies the 1st row, changes the pk to 0
+          - insert_pk_0:
+              pk_colname: pk_produit
+              pk_value: 0
+        <<: *base_treatment
+        datefields:
+          - dh_produit
+          - dh_creer
+          - last_reception
+        set_na_zeros:
+#          - qte_ama
+          - prev_pdesuet
+          - qte_reception
+      scan:
+        filename: scan.xlsx
+        pretreatments:
+          # removes all the to_replace & put values instead for the selected columns
+          - replace_value_in_cols:
+              to_replace: '    -  -  '
+              value: 'None'
+              columns:
+              - date_apres
+              - date_avant
+        <<: *base_treatment
+        datefields:
+          - date_scan
+          - date_avant
+          - date_apres
+        set_na_null:
+          - etage                
+          - range                
+          - axe_x                
+          - axe_y                
+      source:
+        filename: source.xlsx
+        treatment: []
+        datefields: []
+      statprod:
+        filename: statprod.xlsx
+        treatment: []
+        datefields: []
+      statcli:
+        filename: statcli.xlsx
+        treatment: []
+        datefields: []
+#      statprodall:
+#        filename: statprodall.xlsx
+#        treatment: []
+#        datefields: []
+      terme:
+        filename: terme.xlsx
+        <<: *base_treatment
+        datefields: []
+      taxe:
+        filename: taxe.xlsx
+        <<: *base_treatment
+        datefields: []
+      typetaxe:
+        filename: typetaxe.xlsx
+        <<: *base_treatment
+        datefields: []
+      territoire:
+        filename: territoire.xlsx
+        <<: *base_treatment
+        datefields: []
+      typec:
+        filename: typec.xlsx
+        <<: *base_treatment
+        datefields: []
+      vendeur:
+        filename: vendeur.xlsx
+        <<: *base_treatment
+        datefields: []
+      via:
+        filename: via.xlsx
+        <<: *base_treatment
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: pk_via
+              pk_value: 0
+        datefields: []
+      voltecinfo:
+        filename: voltecinfo.xlsx
+        <<: *base_treatment
+        pretreatments: []
+        datefields: []
+
+
+
+    # check that the fk has a corresponding entry in the target table
+    fk_checks:
+#      #source_file.fk_name: target_file.pk_name
+      - entpick.fk_soum: entsoum.pk_ent
+      - entpick.fk_cont: entcont.pk_ent
+      - entpick.fk_fac: entfac.pk_ent
+      - entpick.fk_rma: entrma.pk_ent
+#      #   PO
+      - ap_entcmd.fk_four: fournis.pk_four
+      - ap_detcmd.fk_ent: ap_entcmd.pk_ent
+      - ap_detcmd.fk_prod: produit.pk_produit
+      - ap_detcmd.fk_fourprod: fourprod.pk_fourprod
+      - ap_esample.fk_four: fournis.pk_four
+      - ap_dsample.fk_ent: ap_esample.pk_ent
+      - ap_dsample.fk_prod: produit.pk_produit
+      - ap_dsample.fk_fourprod: fourprod.pk_fourprod
+      #   CASES/BINS
+      - case.fk_prod: produit.pk_produit
+      - case.fk_bins: bins.pk_bins
+      - detcmd2.fk_ent: entcmd2.pk_ent
+#      #   CLIENT
+      - client.fk_clientf: client.pk_client
+      - client.fk_typec: typec.pk_typec
+      - client.fk_terr: territoire.pk_terr
+      - client.fk_terr2: territoire.pk_terr
+      - client.fk_vendeur: vendeur.pk_vendeur
+      - client.fk_terme: terme.pk_terme
+      - client.transport: via.pk_via
+      - client.type_taxe: typetaxe.pk_typetaxe
+      # COURRIEL
+      - courriel.fk_client: client.pk_client
+#      #   CLAIMS
+      - detclaim.fk_ent: entclaim.pk_ent
+      - detclaim.fk_prod: produit.pk_produit
+      - detclaim.fk_fourprod: fourprod.pk_fourprod
+      - entclaim.fk_four: fournis.pk_four
+#      # COMM
+      - detcomm.fk_ent: entcomm.pk_ent
+#      #   CONTRACTS
+      - detcont.fk_ent: entcont.pk_ent
+      - detcont.fk_produit: produit.pk_produit
+      - entcont.fk_source: source.pk_source
+      - entcont.transport: via.pk_via
+      - entcont.fk_vendeur: vendeur.pk_vendeur
+      - entcont.fk_pick: entpick.pk_ent
+      - entcont.fk_soum: entsoum.pk_ent
+      - entcont.fk_client: client.pk_client
+      - entcont.fk_clientf: client.pk_client
+      - entcont.fk_terme: terme.pk_terme
+#      #   FACTURATION
+      - detfac.fk_ent: entfac.pk_ent
+      - detfac.fk_produit: produit.pk_produit
+      - entfac.fk_source: source.pk_source
+      - entfac.fk_pick: entpick.pk_ent
+      - entfac.fk_cancel: entfac.pk_ent
+      - entfac.fk_soum: entsoum.pk_ent
+      - entfac.fk_cont: entcont.pk_ent
+      - entfac.fk_rma: entrma.pk_ent
+      - entfac.transport: via.pk_via
+      - entfac.fk_vendeur: vendeur.pk_vendeur
+      - entfac.fk_client: client.pk_client
+      - entfac.fk_clientf: client.pk_client
+      - entfac.fk_terme: terme.pk_terme
+#      #   SOUMISSION
+      - detsoum.fk_ent: entsoum.pk_ent
+      - detsoum.fk_produit: produit.pk_produit
+      - entsoum.fk_source: source.pk_source
+      - entsoum.fk_vendeur: vendeur.pk_vendeur
+      - entsoum.transport: via.pk_via
+      - entsoum.fk_pick: entpick.pk_ent
+      - entsoum.fk_cont: entcont.pk_ent
+      - entsoum.fk_client: client.pk_client
+      - entsoum.fk_clientf: client.pk_client
+      - entsoum.fk_terme: terme.pk_terme
+#      #   PICKINGS
+      - detpick.fk_ent: entpick.pk_ent
+      - detpick.fk_produit: produit.pk_produit
+      - entpick.fk_source: source.pk_source
+      - entpick.transport: via.pk_via
+      - entpick.fk_vendeur: vendeur.pk_vendeur
+
+      - entpick.fk_client: client.pk_client
+      - entpick.fk_clientf: client.pk_client
+      - entpick.fk_terme: terme.pk_terme
+      - entcmd2.fk_four2: fournis2.Pk_fournis
+#      #   RMA
+      - detrma.fk_ent: entrma.pk_ent
+      - detrma.fk_produit: produit.pk_produit
+      - entrma.fk_client: client.pk_client
+      - entrma.fk_clientf: client.pk_client
+      - entrma.fk_terme: terme.pk_terme
+      - entrma.fk_vendeur: vendeur.pk_vendeur
+      - entrma.fk_source: source.pk_source
+      - entrma.fk_pick: entpick.pk_ent
+      #   PRODUITS
+      - produit.fk_grp: groupe.pk_groupe
+      - produit.fk_grp2: groupe2.Pk_groupe
+      - fourprod.fk_produit: produit.pk_produit
+      - fourprod.fk_fournis: fournis.pk_four
+      # GROUPE PROD
+      - groupe2.fk_groupe1: groupe.pk_groupe
+      #   GROUPES_ESC & others
+      - groupe_esc.fk_client: client.pk_client
+      - groupe_esc.fk_groupe: groupe.pk_groupe
+      - groupe_esc2.fk_client: client.pk_client
+      - groupe_esc2.fk_groupe1: groupe.pk_groupe
+      - groupe_esc2.fk_groupe2: groupe2.Pk_groupe
+      - groupe2.fk_groupe1: groupe.pk_groupe
+      - kit.fk_produit: produit.pk_produit
+      - kit.fk_prodkit: produit.pk_produit
+      - scan.fk_prod: produit.pk_produit
+      - scan.fk_bins: bins.pk_bins
+      - courriel.fk_client: client.pk_client
+      - statcli.fk_client: client.pk_client
+      - statprod.fk_produit: produit.pk_produit
+      - typetaxe.fk_taxe_1: taxe.pk_taxe
+      - typetaxe.fk_taxe_2: taxe.pk_taxe
+
+
+default:
+  main_program:
+    # outputs of this process is csv input for django model parser
+    xlsx_root: "/home/fv/Documents/pro-2020/voltec/ressources/DATA_TEST_JUNE_2022/"
+    inputs_folder: "cleaned_excel"
+    outputs_folder: "cleaned_csv"
+    # list of maps, key == variable name in  program, value == filename in inputs_folder
+    files_to_read:
+      # accountingreportsmodel: no data as this is just a journal of demanded outputs
+      # acombaactionsmodel: same
+      # reports2model: same
+      # courrielsvoltech: not yet implement/new thing
+      # prixcli: it's in the schema, I think I re-created bc I didn't get the actual data
+      # source: I have the data; think some might be missing
+      # taux: not imported atm; just a historic list of usd-cad exchange rates. would prob. want to source that online 
+      # taxe: manually created an xlsx file.
+      # typetaxe: manually created
+      # terme: some might be missing in data. 
+      # voltecinfo: added by myself to manage random bits of info I'm not how it is managed in dbase
+      # entpickf.xlsx: ????
+      # documentproduit: mapping docs to products, not in dbase
+      # imageproduit: mapping images to products, not in dbase
+      # histoquantity: records qte adjustemnets, no in dbase
+      # statprodall: currently no table, need to check it
+      # statprod: Need to add pk_statprod field as absent from dbase output
+      # usager.xlsx: not directly import. see create_user scrip instead.      
 
 
       ap_entcmd:
@@ -77,6 +841,12 @@ default:
         set_na_zeros:
           - total
           - totalt
+      detfac:
+        filename: detfac.xlsx
+        <<: *base_treatment
+        datefields: [ ]
+        set_na_zeros:
+          - detail
       ap_detcmd:
         filename: ap_detcmd.xlsx
         pretreatments:
@@ -129,6 +899,10 @@ default:
           - recu
       bins:
         filename: bins.xlsx
+        pretreatments:
+          - insert_pk_0:
+              pk_colname: pk_bins
+              pk_value: 0          
         <<: *base_treatment
         datefields: []
       case:
@@ -153,6 +927,9 @@ default:
               columns:
               - dh_creer
               - dh_modifie
+          - insert_pk_0:
+              pk_colname: pk_client
+              pk_value: 0                   
         datefields:
           - dh_creer
           - dh_modifie
@@ -180,11 +957,12 @@ default:
         <<: *base_treatment
         datefields: []
         set_na_zeros: []
-      detcmd2:
-        filename: detcmd2.xlsx
-        <<: *base_treatment
-        datefields: []
-        set_na_zeros: []
+#      detcmd2:
+#        filename: detcmd2.xlsx
+#        <<: *base_treatment
+#        datefields: []
+#        set_na_zeros: []
+
       detrma:
         filename: detrma.xlsx
         <<: *base_treatment
@@ -195,7 +973,7 @@ default:
         <<: *base_treatment
         datefields: []
       detpick:
-        filename: detpick_merged.xlsx
+        filename: detpick.xlsx
         <<: *base_treatment
         datefields: []
       detsoum:
@@ -254,7 +1032,7 @@ default:
           - date
         set_na_zeros: []
       entpick:
-        filename: entpick_merged.xlsx
+        filename: entpick.xlsx
         <<: *base_treatment
         set_na_zeros:
           - fk_bo
@@ -547,7 +1325,7 @@ default:
       - client.fk_vendeur: vendeur.pk_vendeur
       - client.fk_terme: terme.pk_terme
       - client.transport: via.pk_via
-      - client.type_taxe: typetaxe.id
+      - client.type_taxe: typetaxe.pk_typetaxe
       # COURRIEL
       - courriel.fk_client: client.pk_client
 #      #   CLAIMS
@@ -622,6 +1400,7 @@ default:
       - groupe2.fk_groupe1: groupe.pk_groupe
       #   GROUPES_ESC & others
       - groupe_esc.fk_client: client.pk_client
+      - groupe_esc.fk_groupe: groupe.pk_groupe
       - groupe_esc2.fk_client: client.pk_client
       - groupe_esc2.fk_groupe1: groupe.pk_groupe
       - groupe_esc2.fk_groupe2: groupe2.Pk_groupe
@@ -640,61 +1419,54 @@ default:
 dummy:
   main_program:
     # outputs of this process is csv input for django model parser
-#    xlsx_root: "/home/fv/Documents/pro-2020/voltec/ressources/DATA-FEV-22"
-    xlsx_root:
-    inputs_folder: "inputs"
-    outputs_folder: "outputs"
+    xlsx_root: "/home/fv/Documents/pro-2020/voltec/ressources/DATA_TEST_JUNE_2022/"
+#    xlsx_root:
+    inputs_folder: "cleaned_excel"
+    outputs_folder: "test_csv"
     # list of maps, key == variable name in  program, value == filename in inputs_folder
     files_to_read:
-      ap_detcmd:
-        filename: ap_detcmd.xlsx
+      detclaim:
+        filename: detclaim.xlsx
         pretreatments:
-          # removes all the to_replace & put values instead for the selected columns
           - replace_value_in_cols:
               to_replace: '    -  -  '
               value: 'None'
               columns:
               - recu
-              - vrai_date
-              - prevu
-        <<: *base_treatment
-        datefields:
-          - vrai_date
-          - recu
-          - prevu
-        set_na_zeros:
-          - min_order
-          - par_boite
-          - par_palette
+    
 
 merge:
   main_program:
-    xlsx_root:
-    inputs_folder: "inputs"
-    outputs_folder: "outputs"
+    xlsx_root: "/home/fv/Documents/pro-2020/voltec/ressources/DATA-TEST-MAY-2022/"
+    inputs_folder: "cleaned_data_xlsx"
+    outputs_folder: "cleaned_data_xlsx"
     # list of maps, key == variable name in  program, value == filename in inputs_folder
+    # stuff I need to merge:
+    # - entpick, entpickf
+    # - detpick, detpickf
+    
     files_to_read:
-#      file1:
-#        filename: entpick.xlsx
-#      file2:
-#        filename: entpickf.xlsx
-      file3:
-        filename: detpick.xlsx
-      file4:
-        filename: detpickf.xlsx
+      file1:
+        filename: entpick.xlsx
+      file2:
+        filename: entpickf.xlsx
+#      file3:
+#        filename: detpick.xlsx
+#      file4:
+#        filename: detpickf.xlsx
     merges:
     # describes which files_to_read to merge with which other file. can only merge 1 by 1 (cannot merge 3 or 4 in one shot)
-#      entpick:
-#        files:
-#          - file1
-#          - file2
-#        output_name: entpick.xlsx
-#        pk_name: pk_det
-      detpick:
+      entpick:
         files:
-          - file3
-          - file4
-        output_name: detpick.xlsx
-        pk_name: pk_det
-
-
+          - file1
+          - file2
+        output_name: entpick_merged.xlsx
+        pk_name: pk_ent
+#      detpick:
+#        files:
+#          - file3
+#          - file4
+#        output_name: detpick_merged.xlsx
+#        pk_name: pk_det
+#
+#
