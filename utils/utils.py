@@ -1,7 +1,7 @@
 import sys
 import os
 # directories
-LOG_DIR             = "logs"
+LOG_DIR             = os.environ.get("LOG_DIR") if os.environ.get("LOG_DIR") else  "logs"
 TEST_DIR            = "tests"
 # filenames
 CONFIGS_FILE        = "configs.json"
