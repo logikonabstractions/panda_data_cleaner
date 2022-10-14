@@ -8,7 +8,6 @@ CONFIGS_FILE        = "configs.json"
 # others
 BASE_LOGGER_NAME    = "engine_logger"
 ROOT                = sys.path[0]
-# XLSX_ROOT           = "/home/fv/Documents/pro-2020/voltec/db_djangomodels_parser"
 
 from utils.logger import get_root_logger
 L = get_root_logger("engine_logger")

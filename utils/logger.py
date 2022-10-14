@@ -1,6 +1,6 @@
 import os
 import logging
-from utils.utils import LOG_DIR
+from utils.utils import LOG_DIR, ROOT
 
 DEFAULT_FORMATTER = logging.Formatter('%(asctime)s - %(name)s:%(levelname)s - %(message)s')
 os.environ["ENV"] = "development"
@@ -51,6 +51,9 @@ def get_stream_handler(formatter=DEFAULT_FORMATTER):
 
 def get_file_handler(filename="logs.log", formatter=DEFAULT_FORMATTER):
     """ builds & return a file handler based on parameters """
-    fh = logging.FileHandler(os.path.join(LOG_DIR, filename))
+    print(os.getcwd())
+    print(os.listdir(os.getcwd()))
+    print(ROOT, LOG_DIR, filename)
+    fh = logging.FileHandler(os.path.join(ROOT, LOG_DIR, filename))
     fh.setFormatter(formatter)
     return fh
